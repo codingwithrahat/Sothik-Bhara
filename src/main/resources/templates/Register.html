@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - Sothik Bhara</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Create Account</h1>
+    <p class="tagline">Register to start using Sothik Bhara</p>
+
+    <form method="post" th:action="@{/register}" th:object="${user}">
+
+        <label>First Name</label>
+        <input type="text" th:field="*{firstName}"><br>
+        <span th:errors="*{firstName}" style="color: red"></span>
+        <br><br>
+
+        <label>Last Name</label>
+        <input type="text" th:field="*{lastName}"><br>
+        <span th:errors="*{lastName}" style="color: red"></span>
+        <br><br>
+
+        <label>Phone Number</label>
+        <input type="tel" th:field="*{phnNumber}"><br>
+        <span th:errors="*{phnNumber}" style="color: red"></span>
+        <br><br>
+
+        <label>Email</label>
+        <input type="email" th:field="*{email}"><br>
+        <span th:errors="*{email}" style="color: red"></span>
+        <br><br>
+
+        <label>Password</label>
+        <input type="password" th:field="*{password}"><br>
+        <span th:errors="*{password}" style="color: red"></span>
+        <br><br>
+
+        <button type="submit">Register</button>
+
+    </form>
+
+    <p th:if="${error}" style="color: red" th:text="${error}"></p>
+
+    <br>
+    <div class="button-group">
+        <a href="/">Already have an account?</a>
+    </div>
+</div>
+
+</body>
+</html>

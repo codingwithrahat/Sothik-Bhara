@@ -11,7 +11,7 @@
     <h1>Fare History</h1>
 
     <p th:if="${history.isEmpty()}">No history found yet.</p>
-    <a href="/">Back to Dashboard</a>
+    <a href="/dashboard">Back to Dashboard</a>
 
     <table border="1" th:unless="${history.isEmpty()}">
         <tr>

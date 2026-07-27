@@ -17,7 +17,7 @@ public class FareController {
 
     private final FareRepository fareRepository;
 
-    @GetMapping("/")
+    @GetMapping("/dashboard")
     public String dashboard() {
         return "dashboard";
     }
