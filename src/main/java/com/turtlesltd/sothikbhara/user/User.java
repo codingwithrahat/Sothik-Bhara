@@ -1,4 +1,4 @@
-package com.turtlesltd.sothikbhara;
+package com.turtlesltd.sothikbhara.user;
 
 
 import jakarta.persistence.Entity;
@@ -32,7 +32,7 @@ public class User {
     @NotBlank(message = "Email name is required")
     String email;
 
-    @NotBlank(message = "Password name is required")
+    @NotBlank(message = "Password is required")
     String password;
 
 }

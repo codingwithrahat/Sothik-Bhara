@@ -1,7 +1,6 @@
-package com.turtlesltd.sothikbhara;
+package com.turtlesltd.sothikbhara.user;
 
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequiredArgsConstructor
 public class UserController {
-    private final UserRepository userRepository;
+
+    private final UserService userService;
 
     @GetMapping("/register")
     public String showReg(Model model){
@@ -32,12 +32,12 @@ public class UserController {
             return "Register";
         }
 
-        if(userRepository.existsByEmail(user.getEmail())){
-            model.addAttribute("error", "email already exists");
-            return "register";
-        }
+        boolean flag = userService.register(user);
 
-        userRepository.save(user);
+        if(!flag){
+            model.addAttribute("error", "email already exists");
+            return "Register";
+        }
 
         log.info("user registered {}", user.getEmail());
 
@@ -55,23 +55,15 @@ public class UserController {
 
         log.info("Login attempt for: {}", email);
 
-        User user = userRepository.findByEmail(email);
+        User user = userService.authenticate(email, pass);
 
         if(user == null){
-            model.addAttribute("error", "User not exists");
-            return "login";
-        }
-
-        if(!user.getPassword().equals(pass)){
-            model.addAttribute("error", "Invalid Password");
+            model.addAttribute("error", "Invalid email or password");
             return "login";
         }
 
         return "redirect:/dashboard";
     }
-
-
-
 
 
 }

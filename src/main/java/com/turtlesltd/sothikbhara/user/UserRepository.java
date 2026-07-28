@@ -1,4 +1,4 @@
-package com.turtlesltd.sothikbhara;
+package com.turtlesltd.sothikbhara.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

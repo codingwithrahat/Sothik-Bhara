@@ -1,4 +1,4 @@
-package com.turtlesltd.sothikbhara;
+package com.turtlesltd.sothikbhara.fare;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class FareController {
 
-    private static final double PER_KM_FARE = 2.53;
-
-    private final FareRepository fareRepository;
+    private final FareService fareService;
 
     @GetMapping("/dashboard")
     public String dashboard() {
@@ -36,21 +34,8 @@ public class FareController {
             return "bus";
         }
 
-        double normalFare = fare.getKm() * PER_KM_FARE;
-        double studentFare = normalFare / 2;
+        fareService.calAndStore(fare);
 
-        if(normalFare < 10){
-            normalFare = 10;
-        }
-
-        if(studentFare < 10){
-            studentFare = 10;
-        }
-
-        fare.setNormalFare(normalFare);
-        fare.setStudentFare(studentFare);
-
-        fareRepository.save(fare);   // database e save hocche
         log.info("Fare calculated and saved to database: {}", fare);
 
         model.addAttribute("fare", fare);
@@ -62,13 +47,13 @@ public class FareController {
 
     @GetMapping("/history")
     public String history(Model model) {
-        model.addAttribute("history", fareRepository.findAll());
+        model.addAttribute("history", fareService.findAll());
         return "history";
     }
 
     @GetMapping("/history/remove/{id}")
-    public String remove(@PathVariable Long id) {
-        fareRepository.deleteById(id);
+    public String remove(@PathVariable int id) {
+        fareService.deleteById(id);
         return "redirect:/history";
     }
 }

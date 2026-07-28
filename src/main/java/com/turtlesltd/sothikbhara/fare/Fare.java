@@ -1,4 +1,4 @@
-package com.turtlesltd.sothikbhara;
+package com.turtlesltd.sothikbhara.fare;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,7 +18,7 @@ public class Fare {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @NotBlank(message = "Starting address is required")
     private String startAddress;
