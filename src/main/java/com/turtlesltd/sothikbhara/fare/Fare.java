@@ -1,24 +1,17 @@
 package com.turtlesltd.sothikbhara.fare;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
+@Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
 public class Fare {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
 
     @NotBlank(message = "Starting address is required")
     private String startAddress;
@@ -28,8 +21,4 @@ public class Fare {
 
     @Positive(message = "KM must be greater than 0")
     private double km;
-
-    private double normalFare;
-
-    private double studentFare;
 }

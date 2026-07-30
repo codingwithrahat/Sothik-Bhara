@@ -1,13 +1,14 @@
 package com.turtlesltd.sothikbhara.user;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    private final UserRepository userRepository;
 
+    private final UserRepository userRepository;
 
     public boolean register(User user){
         if(userRepository.existsByEmail(user.getEmail())){

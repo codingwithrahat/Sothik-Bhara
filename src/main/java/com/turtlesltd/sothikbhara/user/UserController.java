@@ -21,22 +21,22 @@ public class UserController {
     @GetMapping("/register")
     public String showReg(Model model){
         model.addAttribute("user", new User());
-        return "Register";
+        return "register";
     }
 
     @PostMapping("/register")
-    public String resultReg(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model){
+    public String resultReg(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model){
         log.info("Register request receive: {}", user);
 
         if(bindingResult.hasErrors()){
-            return "Register";
+            return "register";
         }
 
         boolean flag = userService.register(user);
 
         if(!flag){
             model.addAttribute("error", "email already exists");
-            return "Register";
+            return "register";
         }
 
         log.info("user registered {}", user.getEmail());

@@ -38,6 +38,23 @@
         <span th:errors="*{password}" style="color: red"></span>
         <br><br>
 
+        <label>Street</label>
+        <input type="text" th:field="*{address.street}">
+        <br><br>
+
+        <label>City</label>
+        <input type="text" th:field="*{address.city}">
+        <br><br>
+
+        <label>Zip Code</label>
+        <input type="text" th:field="*{address.zipCode}">
+        <br><br>
+
+        <label>Country</label>
+        <input type="text" th:field="*{address.country}">
+        <br><br>
+
+
         <button type="submit">Register</button>
 
     </form>

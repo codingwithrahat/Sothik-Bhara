@@ -260,6 +260,53 @@ form input:focus {
     box-shadow: 0 0 0 5px rgba(1, 80, 40, 0.15);
 }
 
+form select {
+    width: 230px;
+    padding: 12px 14px;
+    border: 2px solid #e2e8f0;
+    background: #f8fafc;
+    border-radius: 12px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 14.5px;
+    color: #1f2937;
+    transition: .25s ease, transform .2s ease, box-shadow .2s ease;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23016632' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+form select:hover {
+    border-color: #86efac;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(1, 100, 60, 0.08);
+}
+
+form select:focus {
+    border-color: #016632;
+    background-color: #fff;
+    box-shadow: 0 0 0 5px rgba(1, 80, 40, 0.15);
+}
+
+/* Custom styling for CNG select type */
+select.cngtype {
+    border-left: 5px solid #10b981;
+    font-weight: 600;
+}
+
+/* Custom styling for Train class select */
+select.train-class {
+    border-left: 5px solid #10b981;
+    font-weight: 600;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+}
+
 button {
     background: linear-gradient(135deg, #012b16 0%, #024a28 45%, #016632 100%);
     color: white;
@@ -482,7 +529,8 @@ table td a:hover {
         width: 100%;
         margin-bottom: 6px;
     }
-    form input {
+    form input,
+    form select {
         width: 100%;
         margin-bottom: 14px;
     }

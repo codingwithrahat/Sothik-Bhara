@@ -1,0 +1,29 @@
+package com.turtlesltd.sothikbhara.fare.cng;
+
+import com.turtlesltd.sothikbhara.fare.Fare;
+import jakarta.persistence.*;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class CngFare {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    
+    @Embedded
+    @Valid
+    private Fare fare;
+
+    @Enumerated(EnumType.STRING)
+    private CngRideType rideType;
+
+    private double Normalfare;
+
+}

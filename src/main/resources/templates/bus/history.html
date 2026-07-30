@@ -24,13 +24,13 @@
         </tr>
 
         <tr th:each="fare : ${history}">
-            <td th:text="${fare.startAddress}"></td>
-            <td th:text="${fare.dropAddress}"></td>
-            <td th:text="${fare.km}"></td>
+            <td th:text="${fare.fare.startAddress}"></td>
+            <td th:text="${fare.fare.dropAddress}"></td>
+            <td th:text="${fare.fare.km}"></td>
             <td th:text="${fare.normalFare}"></td>
             <td th:text="${fare.studentFare}"></td>
             <td>
-                <a th:href="@{/history/remove/{id}(id=${fare.id})}">Remove</a>
+                <a th:href="@{/busHistory/remove/{id}(id=${fare.id})}">Remove</a>
             </td>
         </tr>
 
