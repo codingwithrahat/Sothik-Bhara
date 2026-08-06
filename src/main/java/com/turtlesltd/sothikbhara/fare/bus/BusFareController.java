@@ -1,5 +1,7 @@
 package com.turtlesltd.sothikbhara.fare.bus;
 
+import com.turtlesltd.sothikbhara.user.User;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,20 +23,33 @@ public class BusFareController {
     }
 
     @GetMapping("/bus")
-    public String showBusForm(Model model) {
+    public String showBusForm(HttpSession session, Model model) {
         model.addAttribute("busFare", new BusFare());
+        Long user_id = (Long) session.getAttribute("logged_user_id");
+
+        if(user_id == null){
+            return "login";
+        }
+
         return "bus/calculate";
     }
 
     @PostMapping("/fare/bus")
-    public String calculate(@Valid @ModelAttribute BusFare busFare, BindingResult bindingResult, Model model) {
+    public String calculate(@Valid @ModelAttribute BusFare busFare, BindingResult bindingResult, HttpSession session, Model model) {
+
+        Long user_id = (Long) session.getAttribute("logged_user_id");
+
+        if(user_id == null){
+            return "login";
+        }
+
         log.info("Fare request received: {}", busFare);
 
         if (bindingResult.hasErrors()) {
             return "bus/calculate";
         }
 
-        busFareService.calAndStore(busFare);
+        busFareService.calAndStore(busFare, user_id);
 
         log.info("Fare calculated and saved to database: {}", busFare);
 
@@ -45,14 +60,28 @@ public class BusFareController {
     }
 
     @GetMapping("/busHistory")
-    public String history(Model model) {
-        model.addAttribute("history", busFareService.findAll());
+    public String history(HttpSession session, Model model) {
+
+        Long user_id = (Long) session.getAttribute("logged_user_id");
+
+        if (user_id == null) {
+            return "redirect:/login";
+        }
+
+        model.addAttribute("history", busFareService.findByUserId(user_id));
         return "bus/history";
     }
 
     @GetMapping("/busHistory/remove/{id}")
-    public String remove(@PathVariable int id) {
-        busFareService.deleteById(id);
+    public String remove(@PathVariable Long id, HttpSession session) {
+
+        Long user_id = (Long) session.getAttribute("logged_user_id");
+
+        if (user_id == null) {
+            return "redirect:/login";
+        }
+
+        busFareService.deleteByIdAndUserId(id, user_id);
         return "redirect:/busHistory";
     }
 }

@@ -1,5 +1,6 @@
 package com.turtlesltd.sothikbhara.user;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -51,7 +52,7 @@ public class UserController {
     }
 
     @PostMapping("/")
-    public String login(@RequestParam String email, @RequestParam String pass, Model model) {
+    public String login(@RequestParam String email, @RequestParam String pass, HttpSession session, Model model) {
 
         log.info("Login attempt for: {}", email);
 
@@ -61,6 +62,8 @@ public class UserController {
             model.addAttribute("error", "Invalid email or password");
             return "login";
         }
+
+        session.setAttribute("logged_user_id", user.getId());
 
         return "redirect:/dashboard";
     }

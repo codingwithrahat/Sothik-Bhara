@@ -1,11 +1,14 @@
 package com.turtlesltd.sothikbhara.user;
 
 
+import com.turtlesltd.sothikbhara.fare.bus.BusFare;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +18,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    Long id;
 
     @NotBlank(message = "First name is required")
     String firstName;
@@ -34,6 +37,9 @@ public class User {
 
     @Embedded
     private Address address;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<BusFare> busFare;
 
 
 }
