@@ -1,6 +1,5 @@
 package com.turtlesltd.sothikbhara.fare.bus;
 
-import com.turtlesltd.sothikbhara.fare.Fare;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +43,6 @@ public class BusFareController {
 
         return "bus/calculate";
     }
-
 
     @GetMapping("/busHistory")
     public String history(Model model) {

@@ -19,22 +19,22 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/register")
-    public String showReg(Model model){
+    public String showReg(Model model) {
         model.addAttribute("user", new User());
         return "register";
     }
 
     @PostMapping("/register")
-    public String resultReg(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model){
+    public String resultReg(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model) {
         log.info("Register request receive: {}", user);
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "register";
         }
 
         boolean flag = userService.register(user);
 
-        if(!flag){
+        if (!flag) {
             model.addAttribute("error", "email already exists");
             return "register";
         }
@@ -51,19 +51,18 @@ public class UserController {
     }
 
     @PostMapping("/")
-    public String login(@RequestParam String email, @RequestParam String pass, Model model){
+    public String login(@RequestParam String email, @RequestParam String pass, Model model) {
 
         log.info("Login attempt for: {}", email);
 
         User user = userService.authenticate(email, pass);
 
-        if(user == null){
+        if (user == null) {
             model.addAttribute("error", "Invalid email or password");
             return "login";
         }
 
         return "redirect:/dashboard";
     }
-
 
 }

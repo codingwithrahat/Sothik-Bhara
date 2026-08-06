@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Sothik Bhara</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
 
-<div class="container">
-    <h1>Welcome to Sothik Bhara</h1>
-    <p class="tagline">Have a safe journey!</p>
+    <div class="container">
+        <h1>Welcome to Sothik Bhara</h1>
+        <p class="tagline">Have a safe journey!</p>
 
-    <div class="option-box">
+        <div class="option-box">
 
-        <a href="/bus" class="option-card">
-            <h2>BUS</h2>
-            <p>Calculate your bus fare</p>
-        </a>
+            <a href="/bus" class="option-card">
+                <h2>BUS</h2>
+                <p>Calculate your bus fare</p>
+            </a>
 
-        <a href="/cng" class="option-card">
-            <h2>CNG</h2>
-            <p>Calculate your CNG fare</p>
-        </a>
+            <a href="/cng" class="option-card">
+                <h2>CNG</h2>
+                <p>Calculate your CNG fare</p>
+            </a>
 
-        <a href="/train" class="option-card">
-            <h2>TRAIN</h2>
-            <p>Calculate your train fare</p>
-        </a>
+            <a href="/train" class="option-card">
+                <h2>TRAIN</h2>
+                <p>Calculate your train fare</p>
+            </a>
 
+        </div>
+
+        <br>
+        <!--    <a href="/profile">See Profile</a>-->
+        <a href="/">LogOut</a>
     </div>
 
-    <br>
-<!--    <a href="/profile">See Profile</a>-->
-    <a href="/">LogOut</a>
-</div>
-
 </body>
+
 </html>
