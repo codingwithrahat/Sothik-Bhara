@@ -35,10 +35,9 @@ public class BusFareService {
     public List<BusFare> findByUserId(Long userId){
         return busFareRepository.findAllByUserId(userId);
     }
-
-    @Transactional
-    public void deleteByIdAndUserId(Long id, Long userId){
-        busFareRepository.deleteByIdAndUserId(id, userId);
+    
+    public void deleteByIdAndUser_Id(Long id, Long userId){
+        busFareRepository.deleteByIdAndUser_Id(id, userId);
     }
 
 }

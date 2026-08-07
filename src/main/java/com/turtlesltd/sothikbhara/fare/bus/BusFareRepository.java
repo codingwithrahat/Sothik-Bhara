@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import java.util.List;
 
 public interface BusFareRepository extends JpaRepository<BusFare, Long> {
-    @Modifying
-    void deleteByIdAndUserId(Long id, Long userId);
+    void deleteByIdAndUser_Id(Long id, Long userId);
     List<BusFare> findAllByUserId(Long userId);
 }

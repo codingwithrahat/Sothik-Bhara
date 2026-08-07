@@ -2,6 +2,8 @@ package com.turtlesltd.sothikbhara.user;
 
 
 import com.turtlesltd.sothikbhara.fare.bus.BusFare;
+import com.turtlesltd.sothikbhara.fare.cng.CngFare;
+import com.turtlesltd.sothikbhara.fare.train.TrainFare;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -39,7 +41,13 @@ public class User {
     private Address address;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<BusFare> busFare;
+    private List<BusFare> busFares;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<CngFare> cngFares;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<TrainFare> trainFares;
 
 
 }

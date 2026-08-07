@@ -1,6 +1,7 @@
 package com.turtlesltd.sothikbhara.fare.cng;
 
 import com.turtlesltd.sothikbhara.fare.Fare;
+import com.turtlesltd.sothikbhara.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,7 @@ public class CngFare {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     
     @Embedded
     @Valid
@@ -25,5 +26,8 @@ public class CngFare {
     private CngRideType rideType;
 
     private double Normalfare;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
 }

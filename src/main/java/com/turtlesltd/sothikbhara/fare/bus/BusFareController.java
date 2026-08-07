@@ -22,13 +22,19 @@ public class BusFareController {
         return "dashboard";
     }
 
+    @PostMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/login";
+    }
+
     @GetMapping("/bus")
     public String showBusForm(HttpSession session, Model model) {
         model.addAttribute("busFare", new BusFare());
         Long user_id = (Long) session.getAttribute("logged_user_id");
 
         if(user_id == null){
-            return "login";
+            return "redirect:/login";
         }
 
         return "bus/calculate";
@@ -81,7 +87,7 @@ public class BusFareController {
             return "redirect:/login";
         }
 
-        busFareService.deleteByIdAndUserId(id, user_id);
+        busFareService.deleteByIdAndUser_Id(id, user_id);
         return "redirect:/busHistory";
     }
 }

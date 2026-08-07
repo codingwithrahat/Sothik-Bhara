@@ -1,6 +1,7 @@
 package com.turtlesltd.sothikbhara.fare.train;
 
 import com.turtlesltd.sothikbhara.fare.Fare;
+import com.turtlesltd.sothikbhara.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,7 @@ public class TrainFare {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Embedded
     @Valid
@@ -27,5 +28,8 @@ public class TrainFare {
     private double normalFare;
 
     private double studentFare;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
 }

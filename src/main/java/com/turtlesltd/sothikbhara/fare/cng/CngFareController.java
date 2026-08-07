@@ -1,5 +1,6 @@
 package com.turtlesltd.sothikbhara.fare.cng;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,14 +17,28 @@ public class CngFareController {
     private final CngFareService cngFareService;
 
     @GetMapping("/cng")
-    public String showCngForm(Model model) {
+    public String showCngForm(HttpSession session, Model model) {
+
+        Long user_id = (Long) session.getAttribute("logged_user_id");
+
+        if(user_id == null){
+            return "redirect:/login";
+        }
+
         model.addAttribute("fare", new CngFare());
         model.addAttribute("rideTypes", CngRideType.values());
         return "cng/calculate";
     }
 
     @PostMapping("/fare/cng")
-    public String calculate(@Valid @ModelAttribute("fare") CngFare cngFare, BindingResult bindingResult, Model model) {
+    public String calculate(@Valid @ModelAttribute("fare") CngFare cngFare, BindingResult bindingResult, HttpSession session, Model model) {
+
+        Long user_id = (Long) session.getAttribute("logged_user_id");
+
+        if(user_id == null){
+            return "redirect:/login";
+        }
+
         log.info("CNG fare request received: {}", cngFare);
 
         if (bindingResult.hasErrors()) {
@@ -31,7 +46,7 @@ public class CngFareController {
             return "cng/calculate";
         }
 
-        cngFareService.calAndStore(cngFare);
+        cngFareService.calAndStore(cngFare, user_id);
 
         log.info("CNG fare calculated and saved: {}", cngFare);
 
@@ -43,14 +58,28 @@ public class CngFareController {
     }
 
     @GetMapping("/cngHistory")
-    public String history(Model model) {
-        model.addAttribute("history", cngFareService.findAll());
+    public String history(HttpSession session, Model model) {
+
+        Long user_id = (Long) session.getAttribute("logged_user_id");
+
+        if(user_id == null){
+            return "redirect:/login";
+        }
+
+        model.addAttribute("history", cngFareService.findAllByUserId(user_id));
         return "cng/history";
     }
 
     @GetMapping("/cngHistory/remove/{id}")
-    public String remove(@PathVariable int id) {
-        cngFareService.deleteById(id);
+    public String remove(@PathVariable Long id, HttpSession session) {
+
+        Long user_id = (Long) session.getAttribute("logged_user_id");
+
+        if(user_id == null){
+            return "redirect:/login";
+        }
+
+        cngFareService.deleteByIdAndUser_Id(id, user_id);
         return "redirect:/cngHistory";
     }
 }
