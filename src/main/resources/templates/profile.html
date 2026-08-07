@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile | Sothik Bhara</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<div class="container">
+    <h1>My Profile</h1>
+    <p class="tagline">Your account information</p>
+
+    <div class="profile-box">
+        <p><strong>Name:</strong> <span th:text="${user.firstName} + ' ' + ${user.lastName}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+        <p><strong>Phone:</strong> <span th:text="${user.phnNumber}"></span></p>
+
+        <div th:if="${user.address != null}">
+            <p><strong>Address:</strong>
+                <span th:text="${user.address}"></span>
+            </p>
+        </div>
+    </div>
+
+    <br>
+    <a th:href="@{/dashboard}">← Back to Dashboard</a>
+    <a th:href="@{/logout}">LogOut</a>
+</div>
+
+</body>
+
+</html>
