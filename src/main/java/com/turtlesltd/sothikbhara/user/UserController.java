@@ -42,16 +42,16 @@ public class UserController {
 
         log.info("user registered {}", user.getEmail());
 
-        return "redirect:/";
+        return "redirect:/login";
 
     }
 
-    @GetMapping("/")
+    @GetMapping("/login")
     public String showLoginForm() {
         return "login";
     }
 
-    @PostMapping("/")
+    @PostMapping("/login")
     public String login(@RequestParam String email, @RequestParam String pass, HttpSession session, Model model) {
 
         log.info("Login attempt for: {}", email);
@@ -71,7 +71,7 @@ public class UserController {
     @GetMapping("/logout")
     public String logout(HttpSession session){
         session.invalidate();
-        return "redirect:/";
+        return "redirect:/login";
     }
 
 }

@@ -3,11 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>My Profile | Sothik Bhara</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile — Pothik</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a th:href="@{/}" class="brand">
+        <div class="brand-icon">🚦</div>
+        <span class="brand-name">Pothik</span>
+    </a>
+    <div class="nav-links">
+        <a th:href="@{/}">Home</a>
+    </div>
+</nav>
 
 <div class="container">
     <h1>My Profile</h1>
@@ -25,9 +37,9 @@
         </div>
     </div>
 
-    <br>
-    <a th:href="@{/dashboard}">← Back to Dashboard</a>
-    <a th:href="@{/logout}">LogOut</a>
+    <div class="button-group">
+        <a th:href="@{/logout}">LogOut</a>
+    </div>
 </div>
 
 </body>

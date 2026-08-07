@@ -18,7 +18,14 @@ public class BusFareController {
     private final BusFareService busFareService;
 
     @GetMapping("/dashboard")
-    public String dashboard() {
+    public String dashboard(HttpSession session) {
+
+        Long user_id = (Long) session.getAttribute("logged_user_id");
+
+        if(user_id == null){
+            return "redirect:/login";
+        }
+
         return "dashboard";
     }
 
@@ -40,7 +47,7 @@ public class BusFareController {
         Long user_id = (Long) session.getAttribute("logged_user_id");
 
         if(user_id == null){
-            return "login";
+            return "redirect:/login";
         }
 
         log.info("Fare request received: {}", busFare);
@@ -65,7 +72,7 @@ public class BusFareController {
         Long user_id = (Long) session.getAttribute("logged_user_id");
 
         if (user_id == null) {
-            return "redirect:/";
+            return "redirect:/login";
         }
 
         model.addAttribute("history", busFareService.findByUserId(user_id));
@@ -78,7 +85,7 @@ public class BusFareController {
         Long user_id = (Long) session.getAttribute("logged_user_id");
 
         if (user_id == null) {
-            return "redirect:/";
+            return "redirect:/login";
         }
 
         busFareService.deleteByIdAndUser_Id(id, user_id);

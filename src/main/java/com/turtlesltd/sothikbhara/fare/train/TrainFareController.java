@@ -36,7 +36,7 @@ public class TrainFareController {
         Long user_id = (Long) session.getAttribute("logged_user_id");
 
         if(user_id == null){
-            return "redirect:/";
+            return "redirect:/login";
         }
 
 
@@ -64,7 +64,7 @@ public class TrainFareController {
         Long user_id = (Long) session.getAttribute("logged_user_id");
 
         if(user_id == null){
-            return "redirect:/";
+            return "redirect:/login";
         }
 
         model.addAttribute("history", trainFareService.findAllByUserId(user_id));
@@ -77,7 +77,7 @@ public class TrainFareController {
         Long user_id = (Long) session.getAttribute("logged_user_id");
 
         if(user_id == null){
-            return "redirect:/";
+            return "redirect:/login";
         }
 
         trainFareService.deleteByIdAndUser_Id(id, user_id);

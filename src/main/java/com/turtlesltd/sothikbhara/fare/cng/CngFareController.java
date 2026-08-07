@@ -36,7 +36,7 @@ public class CngFareController {
         Long user_id = (Long) session.getAttribute("logged_user_id");
 
         if(user_id == null){
-            return "redirect:/";
+            return "redirect:/login";
         }
 
         log.info("CNG fare request received: {}", cngFare);
@@ -63,7 +63,7 @@ public class CngFareController {
         Long user_id = (Long) session.getAttribute("logged_user_id");
 
         if(user_id == null){
-            return "redirect:/";
+            return "redirect:/login";
         }
 
         model.addAttribute("history", cngFareService.findAllByUserId(user_id));
@@ -76,7 +76,7 @@ public class CngFareController {
         Long user_id = (Long) session.getAttribute("logged_user_id");
 
         if(user_id == null){
-            return "redirect:/";
+            return "redirect:/login";
         }
 
         cngFareService.deleteByIdAndUser_Id(id, user_id);

@@ -7,11 +7,22 @@
 </head>
 <body>
 
+<nav class="navbar">
+    <a th:href="@{/}" class="brand">
+        <div class="brand-icon">🚦</div>
+        <span class="brand-name">Pothik</span>
+    </a>
+    <div class="nav-links">
+        <a th:href="@{/}">Home</a>
+        <a th:if="${session.logged_user_id == null}" th:href="@{/login}">Login</a>
+        <a th:if="${session.logged_user_id != null}" th:href="@{/profile}">Profile</a>
+    </div>
+</nav>
+
 <div class="container">
     <h1>CNG Fare History</h1>
 
     <p th:if="${history.isEmpty()}">No history found yet.</p>
-    <a href="/dashboard">Back to Dashboard</a>
 
     <table border="1" th:unless="${history.isEmpty()}">
         <tr>

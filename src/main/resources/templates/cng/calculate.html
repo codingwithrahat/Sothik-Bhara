@@ -7,6 +7,17 @@
 </head>
 <body>
 
+<nav class="navbar">
+    <a th:href="@{/}" class="brand">
+        <div class="brand-icon">🚦</div>
+        <span class="brand-name">Pothik</span>
+    </a>
+    <div class="nav-links">
+        <a th:href="@{/cngHistory}">View History</a>
+        <a th:if="${session.logged_user_id != null}" th:href="@{/profile}">Profile</a>
+    </div>
+</nav>
+
 <div class="container">
     <h1>CNG Fare Calculator</h1>
 
@@ -45,10 +56,7 @@
         <p>Ride Type: <span th:text="${fare.rideType}"></span></p>
         <p><strong>Fare: </strong><span th:text="${fare.normalfare}"></span> TK</p>
     </div>
-
-    <br>
-    <a href="/dashboard">Back to Dashboard</a>
-    <a href="/cngHistory">View History</a>
+    
 </div>
 
 </body>

@@ -7,6 +7,17 @@
 </head>
 <body>
 
+<nav class="navbar">
+    <a th:href="@{/}" class="brand">
+        <div class="brand-icon">🚦</div>
+        <span class="brand-name">Pothik</span>
+    </a>
+    <div class="nav-links">
+        <a th:href="@{/busHistory}">View History</a>
+        <a th:if="${session.logged_user_id != null}" th:href="@{/profile}">Profile</a>
+    </div>
+</nav>
+
 <div class="container">
     <h1>Bus Fare Calculator</h1>
 
@@ -40,9 +51,6 @@
         <p><strong>Student Fare: </strong><span th:text="${busFare.studentFare}"></span> TK</p>
     </div>
 
-    <br>
-    <a href="/dashboard">Back to Dashboard</a>
-    <a href="/busHistory">View History</a>
 </div>
 
 </body>
